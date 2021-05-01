@@ -23,11 +23,13 @@ def parse_num_tokens(num_tokens):
     Internal function to parse number of tokens
     from human readable format to a number.
     """
-    match = re.match("(\d+.\d+)(M|k)", num_tokens)
+    match = re.match("(\d+.\d+)(G|M|k)", num_tokens)
     if match:
         num = match.group(1)
         quan = match.group(2)
-        if quan == 'M':
+        if quan == 'G':
+            return float(num)*1000
+        elif quan == 'M':
             return float(num)
         return float(num) / 1000
     return 0
